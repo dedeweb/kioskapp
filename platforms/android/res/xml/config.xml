@@ -19,6 +19,9 @@
     <feature name="Capture">
         <param name="android-package" value="org.apache.cordova.mediacapture.Capture" />
     </feature>
+    <feature name="JXcore">
+        <param name="android-package" value="io.jxcore.node.jxcore" />
+    </feature>
     <name>kioskApp</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
@@ -46,7 +49,4 @@
     <preference name="xwalkMode" value="embedded" />
     <preference name="xwalkMultipleApk" value="true" />
     <preference name="android-minSdkVersion" value="16" />
-    <feature name="JXcore">
-        <param name="android-package" value="io.jxcore.node.jxcore" />
-    </feature>
 </widget>

@@ -29,6 +29,18 @@ var app = {
     onDeviceReady: function() {
         this.receivedEvent('deviceready');
         window.inAppBrowserXwalk.open('https://webrtc.github.io/samples/src/content/getusermedia/gum/', {toolbarHeight: '0'});
+		jxcore.isReady(function() {
+			console.log('JXCORE ready!'); 
+			
+			 jxcore('app.js').loadMainFile(function(ret, err) {
+			  if (err) {
+				console.error('JXCORE err' + JSON.stringify(err));
+			  } else {
+				console.log('JXCORE Loaded');
+				//jxcore_ready();
+			  }
+			});
+		});
     },
 
     // Update DOM on a Received Event
