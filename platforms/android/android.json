@@ -59,6 +59,10 @@
                         {
                             "xml": "<feature name=\"Capture\"><param name=\"android-package\" value=\"org.apache.cordova.mediacapture.Capture\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"JXcore\"><param name=\"android-package\" value=\"io.jxcore.node.jxcore\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -88,6 +92,38 @@
                         },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.READ_EXTERNAL_STORAGE\" />",
+                            "count": 1
+                        }
+                    ],
+                    "/manifest": [
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.BLUETOOTH_ADMIN\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.BLUETOOTH\" />",
+                            "count": 1
+                        }
+                    ],
+                    "/manifest/application": [
+                        {
+                            "xml": "<receiver android:name=\"io.jxcore.node.ConnectivityChangeListener\"><intent-filter><action android:name=\"android.net.conn.CONNECTIVITY_CHANGE\" /><action android:name=\"android.net.wifi.WIFI_STATE_CHANGED\" /></intent-filter></receiver>",
                             "count": 1
                         }
                     ]
@@ -123,6 +159,9 @@
             "PACKAGE_NAME": "fr.dedeweb.kioskApp"
         },
         "cordova-custom-config": {
+            "PACKAGE_NAME": "fr.dedeweb.kioskApp"
+        },
+        "io.jxcore.node": {
             "PACKAGE_NAME": "fr.dedeweb.kioskApp"
         }
     },
@@ -384,6 +423,14 @@
             "file": "plugins/cordova-plugin-media-capture/www/android/init.js",
             "pluginId": "cordova-plugin-media-capture",
             "runs": true
+        },
+        {
+            "id": "io.jxcore.node.jxcore",
+            "file": "plugins/io.jxcore.node/www/jxcore.js",
+            "pluginId": "io.jxcore.node",
+            "clobbers": [
+                "jxcore"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -394,6 +441,7 @@
         "cordova-plugin-compat": "1.1.0",
         "cordova-plugin-file": "4.3.1",
         "cordova-plugin-media-capture": "1.4.1",
-        "cordova-custom-config": "3.1.2"
+        "cordova-custom-config": "3.1.2",
+        "io.jxcore.node": "0.1.1"
     }
 }

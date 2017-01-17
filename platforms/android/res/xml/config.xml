@@ -46,4 +46,7 @@
     <preference name="xwalkMode" value="embedded" />
     <preference name="xwalkMultipleApk" value="true" />
     <preference name="android-minSdkVersion" value="16" />
+    <feature name="JXcore">
+        <param name="android-package" value="io.jxcore.node.jxcore" />
+    </feature>
 </widget>

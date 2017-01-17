@@ -256,6 +256,14 @@ module.exports = [
         "file": "plugins/cordova-plugin-media-capture/www/android/init.js",
         "pluginId": "cordova-plugin-media-capture",
         "runs": true
+    },
+    {
+        "id": "io.jxcore.node.jxcore",
+        "file": "plugins/io.jxcore.node/www/jxcore.js",
+        "pluginId": "io.jxcore.node",
+        "clobbers": [
+            "jxcore"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -268,7 +276,8 @@ module.exports.metadata =
     "cordova-plugin-compat": "1.1.0",
     "cordova-plugin-file": "4.3.1",
     "cordova-plugin-media-capture": "1.4.1",
-    "cordova-custom-config": "3.1.2"
+    "cordova-custom-config": "3.1.2",
+    "io.jxcore.node": "0.1.1"
 };
 // BOTTOM OF METADATA
 });
