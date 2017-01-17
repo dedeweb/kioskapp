@@ -65,5 +65,13 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "io.jxcore.node": {
+        "source": {
+            "type": "local",
+            "path": "io.jxcore.node"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }

@@ -29,6 +29,9 @@
         },
         "cordova-custom-config": {
             "PACKAGE_NAME": "fr.dedeweb.kioskApp"
+        },
+        "io.jxcore.node": {
+            "PACKAGE_NAME": "fr.dedeweb.kioskApp"
         }
     },
     "dependent_plugins": {
