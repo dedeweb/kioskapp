@@ -264,6 +264,14 @@ module.exports = [
         "clobbers": [
             "jxcore"
         ]
+    },
+    {
+        "id": "cordova-plugin-app-version.AppVersionPlugin",
+        "file": "plugins/cordova-plugin-app-version/www/AppVersionPlugin.js",
+        "pluginId": "cordova-plugin-app-version",
+        "clobbers": [
+            "cordova.getAppVersion"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -277,7 +285,8 @@ module.exports.metadata =
     "cordova-plugin-file": "4.3.1",
     "cordova-plugin-media-capture": "1.4.1",
     "cordova-custom-config": "3.1.2",
-    "io.jxcore.node": "0.1.1"
+    "io.jxcore.node": "0.1.1",
+    "cordova-plugin-app-version": "0.1.9"
 };
 // BOTTOM OF METADATA
 });
