@@ -22,6 +22,9 @@
     <feature name="JXcore">
         <param name="android-package" value="io.jxcore.node.jxcore" />
     </feature>
+    <feature name="AppVersion">
+        <param name="android-package" value="uk.co.whiteoctober.cordova.AppVersion" />
+    </feature>
     <name>kioskApp</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
@@ -49,7 +52,4 @@
     <preference name="xwalkMode" value="embedded" />
     <preference name="xwalkMultipleApk" value="true" />
     <preference name="android-minSdkVersion" value="16" />
-    <feature name="AppVersion">
-        <param name="android-package" value="uk.co.whiteoctober.cordova.AppVersion" />
-    </feature>
 </widget>

@@ -1,0 +1,19 @@
+{
+  "name": "kioskapp_jxcore",
+  "version": "1.0.0",
+  "description": "jxcore part for kioskapp",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "jxcore",
+    "kioskapp"
+  ],
+  "author": "denis messie",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "body-parser": "^1.16.0",
+    "express": "^4.14.0"
+  }
+}

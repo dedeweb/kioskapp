@@ -16,7 +16,12 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
 var app = {
+	
+	url: null,
+	browser: null,
+	fullScreen: false,
     // Application Constructor
     initialize: function() {
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
@@ -27,8 +32,9 @@ var app = {
     // Bind any cordova events here. Common events are:
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
+		var that = this;
         this.receivedEvent('deviceready');
-        window.inAppBrowserXwalk.open('https://webrtc.github.io/samples/src/content/getusermedia/gum/', {toolbarHeight: '0'});
+        //window.inAppBrowserXwalk.open('https://webrtc.github.io/samples/src/content/getusermedia/gum/', {toolbarHeight: '0'});
 		jxcore.isReady(function() {
 			console.log('JXCORE ready!'); 
 			
@@ -38,11 +44,53 @@ var app = {
 			  } else {
 				console.log('JXCORE Loaded');
 				//jxcore_ready();
+				jxcore('getVersion').register(function (callback) {
+					cordova.getAppVersion.getVersionNumber(callback);
+				});
+				
+				jxcore('loadUrl').register(function (url) { that.loadUrl(url); });
+				jxcore('reload').register(function () { that.reload(); });
 			  }
 			});
 		});
+		
     },
-
+	
+	loadUrl: function (url) {
+		console.log('load url : ' + url);
+		this.url = url;
+		this.reload();
+	},
+	
+	reload: function () {
+		if(this.browser) {
+			this.browser.close();	
+		}
+		$('body').hide();//hiding admin page to user. 
+		this.browser = window.inAppBrowserXwalk.open(this.url, {toolbarHeight: '0'});
+		this.goFullScreen();
+	},
+	goFullScreen: function () {
+		if(!this.fullScreen) {
+			var that = this;
+			this.fullScreen = true;
+			window.ShellExec.exec(['su', '-c', 'service call activity 42 s16 com.android.systemuis'], function(res){
+				if(res.exitStatus !== 0) {
+					console.error('fullscreen error ' + res.output);
+					that.fullScreen = false;
+				}
+			});
+		}
+	},
+	exitFullScreen: function () {
+		var that = this;
+		this.fullScreen = false;
+		window.ShellExec.exec(['su', '-c', 'LD_LIBRARY_PATH=/vendor/lib:/system/lib am startservice -n com.android.systemui/.SystemUIService'], function(res){
+			if(res.exitStatus !== 0) {
+				console.error('exit fullscreen error ' + res.output);
+			}
+		});
+	},
     // Update DOM on a Received Event
     receivedEvent: function(id) {
         var parentElement = document.getElementById(id);
