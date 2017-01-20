@@ -33,7 +33,6 @@ var app = {
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
 		var that = this;
-        this.receivedEvent('deviceready');
         //window.inAppBrowserXwalk.open('https://webrtc.github.io/samples/src/content/getusermedia/gum/', {toolbarHeight: '0'});
 		jxcore.isReady(function() {
 			console.log('JXCORE ready!'); 
@@ -50,8 +49,15 @@ var app = {
 				
 				jxcore('loadUrl').register(function (url) { that.loadUrl(url); });
 				jxcore('reload').register(function () { that.reload(); });
+				jxcore('serverStarted').register(function (port) { that.displayAddress(port);});
 			  }
 			});
+		});
+		$(document).ready(function () {
+			$('#btnLoadUrl').click(function (){
+				that.loadUrl($('#txtUrl').val());
+			});
+
 		});
 		
     },
@@ -70,11 +76,19 @@ var app = {
 		this.browser = window.inAppBrowserXwalk.open(this.url, {toolbarHeight: '0'});
 		this.goFullScreen();
 	},
+
+	displayAddress: function (port) {
+
+        networkinterface.getIPAddress(function (ip) {
+            $('#srvAdr').text(ip + ':' + port);
+		});
+		//$('#srvAdr').text(address);
+	},
 	goFullScreen: function () {
 		if(!this.fullScreen) {
 			var that = this;
 			this.fullScreen = true;
-			window.ShellExec.exec(['su', '-c', 'service call activity 42 s16 com.android.systemuis'], function(res){
+			window.ShellExec.exec(['su', '-c', 'service call activity 42 s16 com.android.systemui'], function(res){
 				if(res.exitStatus !== 0) {
 					console.error('fullscreen error ' + res.output);
 					that.fullScreen = false;
@@ -90,18 +104,8 @@ var app = {
 				console.error('exit fullscreen error ' + res.output);
 			}
 		});
-	},
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
+	}
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-
-        console.log('Received Event: ' + id);
-    }
 };
 
 app.initialize();

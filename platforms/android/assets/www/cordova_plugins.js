@@ -272,6 +272,14 @@ module.exports = [
         "clobbers": [
             "cordova.getAppVersion"
         ]
+    },
+    {
+        "id": "cordova-plugin-networkinterface.networkinterface",
+        "file": "plugins/cordova-plugin-networkinterface/www/networkinterface.js",
+        "pluginId": "cordova-plugin-networkinterface",
+        "clobbers": [
+            "window.networkinterface"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -286,7 +294,8 @@ module.exports.metadata =
     "cordova-plugin-media-capture": "1.4.1",
     "cordova-custom-config": "3.1.2",
     "io.jxcore.node": "0.1.1",
-    "cordova-plugin-app-version": "0.1.9"
+    "cordova-plugin-app-version": "0.1.9",
+    "cordova-plugin-networkinterface": "1.0.8"
 };
 // BOTTOM OF METADATA
 });

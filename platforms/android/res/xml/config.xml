@@ -25,6 +25,9 @@
     <feature name="AppVersion">
         <param name="android-package" value="uk.co.whiteoctober.cordova.AppVersion" />
     </feature>
+    <feature name="networkinterface">
+        <param name="android-package" value="com.albahra.plugin.networkinterface.networkinterface" />
+    </feature>
     <name>kioskApp</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.

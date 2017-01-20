@@ -35,6 +35,9 @@
         },
         "cordova-plugin-app-version": {
             "PACKAGE_NAME": "fr.dedeweb.kioskApp"
+        },
+        "cordova-plugin-networkinterface": {
+            "PACKAGE_NAME": "fr.dedeweb.kioskApp"
         }
     },
     "dependent_plugins": {

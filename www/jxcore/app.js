@@ -39,5 +39,9 @@ app.post('/reload', function (req, res) {
 });
 
 var server = app.listen(1664, function () {
-  console.log("Express server is started. (port: 1664)");
+
+	console.log("Express server is started. (port: 1664)");
+    var port = server.address().port;
+    Mobile('serverStarted').call(port);
+
 });
