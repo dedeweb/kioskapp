@@ -49,6 +49,7 @@ var app = {
 				
 				jxcore('loadUrl').register(function (url) { that.loadUrl(url); });
 				jxcore('reload').register(function () { that.reload(); });
+				jxcore('exit').register(function () { that.exitFullScreen(); });
 				jxcore('serverStarted').register(function (port) { that.displayAddress(port);});
 			  }
 			});
@@ -97,7 +98,6 @@ var app = {
 		}
 	},
 	exitFullScreen: function () {
-		var that = this;
 		this.fullScreen = false;
 		window.ShellExec.exec(['su', '-c', 'LD_LIBRARY_PATH=/vendor/lib:/system/lib am startservice -n com.android.systemui/.SystemUIService'], function(res){
 			if(res.exitStatus !== 0) {

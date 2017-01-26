@@ -33,6 +33,11 @@ app.post('/loadUrl', function (req, res) {
 	}
 });
 
+app.post('/exit', function (req, res) {
+	Mobile('exit').call()
+    res.status(200).send();
+});
+
 app.post('/reload', function (req, res) {
 	Mobile('reload').call();
 	res.status(200).send();
