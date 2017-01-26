@@ -49,6 +49,7 @@ var app = {
 				
 				jxcore('loadUrl').register(function (url) { that.loadUrl(url); });
 				jxcore('reload').register(function () { that.reload(); });
+				jxcore('exit').register(function () { that.exitFullScreen(); });
 				jxcore('serverStarted').register(function (port) { that.displayAddress(port);});
 			  }
 			});
