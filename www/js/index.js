@@ -50,15 +50,16 @@ var app = {
 				jxcore('loadUrl').register(function (url) { that.loadUrl(url); });
 				jxcore('reload').register(function () { that.reload(); });
 				jxcore('exit').register(function () { that.exitFullScreen(); });
-				jxcore('serverStarted').register(function (port) { that.displayAddress(port);});
+				jxcore('fullscreen').register(function () { that.goFullScreen(); });
 			  }
 			});
 		});
+		
 		$(document).ready(function () {
 			$('#btnLoadUrl').click(function (){
 				that.loadUrl($('#txtUrl').val());
 			});
-
+			that.displayAddress();
 		});
 		
     },
@@ -67,6 +68,7 @@ var app = {
 		console.log('load url : ' + url);
 		this.url = url;
 		this.reload();
+		this.goFullScreen();
 	},
 	
 	reload: function () {
@@ -75,15 +77,14 @@ var app = {
 		}
 		$('body').hide();//hiding admin page to user. 
 		this.browser = window.inAppBrowserXwalk.open(this.url, {toolbarHeight: '0'});
-		this.goFullScreen();
 	},
 
-	displayAddress: function (port) {
-
+	displayAddress: function () {
         networkinterface.getIPAddress(function (ip) {
-            $('#srvAdr').text(ip + ':' + port);
+            $('#srvAdr').text( 'http://' + ip + ':1664 , https://' + ip + ':1665' );
+		}, function (error) {
+			 $('#srvAdr').text('error getting ip : ' + error);
 		});
-		//$('#srvAdr').text(address);
 	},
 	goFullScreen: function () {
 		if(!this.fullScreen) {

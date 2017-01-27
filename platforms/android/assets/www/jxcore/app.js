@@ -38,15 +38,17 @@ app.post('/exit', function (req, res) {
     res.status(200).send();
 });
 
+app.post('/fullscreen', function (req, res) {
+	Mobile('fullscreen').call()
+    res.status(200).send();
+});
+
+
 app.post('/reload', function (req, res) {
 	Mobile('reload').call();
 	res.status(200).send();
 });
 
-var server = app.listen(1664, function () {
-
-	console.log("Express server is started. (port: 1664)");
-    var port = server.address().port;
-    Mobile('serverStarted').call(port);
-
+app.listen(1664, function () {
+	console.log("[http]express server is started. (port: 1664)");
 });
