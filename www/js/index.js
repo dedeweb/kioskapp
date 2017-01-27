@@ -81,7 +81,7 @@ var app = {
 
 	displayAddress: function () {
         networkinterface.getIPAddress(function (ip) {
-            $('#srvAdr').text( 'http://' + ip + ':1664 , https://' + ip + ':1665' );
+            $('#srvAdr').text( 'http://' + ip + ':1664' );
 		}, function (error) {
 			 $('#srvAdr').text('error getting ip : ' + error);
 		});
