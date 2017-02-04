@@ -66,7 +66,7 @@ var app = {
 	
 	loadUrl: function (url) {
 		console.log('load url : ' + url);
-		this.url = url;
+		this.url = 'http://127.0.0.1:1665' + url;
 		this.reload();
 		this.goFullScreen();
 	},
@@ -81,7 +81,7 @@ var app = {
 
 	displayAddress: function () {
         networkinterface.getIPAddress(function (ip) {
-            $('#srvAdr').text( 'http://' + ip + ':1664 , https://' + ip + ':1665' );
+            $('#srvAdr').text( 'http://' + ip + ':1664' );
 		}, function (error) {
 			 $('#srvAdr').text('error getting ip : ' + error);
 		});
