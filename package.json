@@ -1,0 +1,32 @@
+{
+  "name": "kioskapp",
+  "version": "0.0.1-alpha",
+  "description": "A kiosk app for android",
+  "main": "index.js",
+  "dependencies": {
+    "cordova": "~8.0.0",
+    "cordova-custom-config": "~5.0.2",
+    "plist": "~3.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "build": "cordova prepare && cordova build android",
+    "postinstall" : "cd www/jxcore && npm install",
+    "test": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dedeweb/kioskapp.git"
+  },
+  "keywords": [
+    "android",
+    "cordova",
+    "kiosk"
+  ],
+  "author": "Denis Messié",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/dedeweb/kioskapp/issues"
+  },
+  "homepage": "https://github.com/dedeweb/kioskapp#readme"
+}
