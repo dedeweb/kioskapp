@@ -66,7 +66,7 @@ var app = {
 	
 	loadUrl: function (url) {
 		console.log('load url : ' + url);
-		this.url = 'http://127.0.0.1:1665' + url;
+		this.url = url;
 		this.reload();
 		this.goFullScreen();
 	},

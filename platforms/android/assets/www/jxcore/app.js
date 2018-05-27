@@ -2,15 +2,15 @@ console.log('JXCORE BACK LOADED : ' + __dirname);
 
 var express = require('express');
 var bodyParser = require('body-parser');
-var request = require('request');
+//var request = require('request');
 var app = express();
-var appProxy = express();
+//var appProxy = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 
-
+/*
 appProxy.all('/*', function (req, res) {
 
     var url = 'http://192.168.0.2:4201' + req.url;
@@ -25,7 +25,7 @@ appProxy.all('/*', function (req, res) {
     }
     req.pipe(req2).pipe(res);
     //req2.pipe(res).on('error', function(err){res.status(500).send(err);});
-});
+});*/
 
 
 app.use(function(req, res, next) {
@@ -73,7 +73,7 @@ app.post('/reload', function (req, res) {
 app.listen(1664, function () {
 	console.log("[http]express server is started. (port: 1664)");
 });
-
+/*
 appProxy.listen(1665, function () {
 	console.log("[proxy] express server is started (port: 1665)");
-});
+});*/
