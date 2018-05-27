@@ -1,0 +1,12 @@
+#.travis.yml
+
+language: node_js
+node_js:
+  - "8.11"
+
+branches:
+  only:
+    - master
+
+script:
+  - npm run build
