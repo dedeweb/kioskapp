@@ -13,8 +13,8 @@
   "author": "denis messie",
   "license": "GPL-3.0",
   "dependencies": {
-    "body-parser": "^1.16.0",
-    "express": "^4.14.0",
-    "request": "^2.79.0"
+    "body-parser": "~1.18.3",
+    "express": "~4.16.3",
+    "request": "~2.87.0"
   }
 }
