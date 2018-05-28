@@ -14,7 +14,7 @@ branches:
 install:
   - npm cache clean
   - npm install
-  - echo y | android update sdk -u --filter android-22,android-23
+  - echo y | android update sdk -u --filter android-24
 
 script:
   - npm run build
