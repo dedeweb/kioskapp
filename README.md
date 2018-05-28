@@ -1,4 +1,4 @@
-# kioskapp
+# kioskapp   [![Build Status](https://api.travis-ci.com/dedeweb/kioskapp.png?branch=master)](https://travis-ci.com/dedeweb/kioskapp)
 
 A android cordova application to display a web page fullscreen and modal. Device have to be rooted. Physical buttons (volume/power/...) are
 not disabled. 
@@ -6,9 +6,10 @@ For example, this app is used by tamerbooth (https://github.com/dedeweb/tamerboo
 
 ## Installation
 
-	$ npm install -g cordova
-	$ cd kioskapp/www/jxcore && npm install
-	$ cordova run android
+	$ npm install
+	$ npm run build
+
+generated apk's should be located in `platforms/android/build/outputs/apk`
 
 ## Usage
 
