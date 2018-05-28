@@ -6,12 +6,13 @@
   "dependencies": {
     "cordova": "~8.0.0",
     "cordova-custom-config": "~5.0.2",
-    "plist": "~3.0.1"
+    "plist": "~3.0.1",
+    "cordova-android": "~6.0.0"
   },
   "devDependencies": {},
   "scripts": {
     "build": "cordova prepare && cordova build android",
-    "postinstall" : "cd www/jxcore && npm install",
+    "postinstall": "cd www/jxcore && npm install",
     "test": "npm run build"
   },
   "repository": {
@@ -28,5 +29,10 @@
   "bugs": {
     "url": "https://github.com/dedeweb/kioskapp/issues"
   },
-  "homepage": "https://github.com/dedeweb/kioskapp#readme"
+  "homepage": "https://github.com/dedeweb/kioskapp#readme",
+  "cordova": {
+    "platforms": [
+      "android"
+    ]
+  }
 }
