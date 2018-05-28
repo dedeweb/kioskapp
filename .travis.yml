@@ -16,7 +16,6 @@ before_install:
   - sudo apt-get install nodejs
 
 install:
-  - npm cache clean
   - npm install
   - echo y | android update sdk -u --filter android-24
 
