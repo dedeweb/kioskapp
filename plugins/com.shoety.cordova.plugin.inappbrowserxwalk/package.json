@@ -1,0 +1,41 @@
+{
+  "_from": "git+https://github.com/mrjoes/cordova-plugin-inappbrowserxwalk.git#patch-1",
+  "_id": "com.shoety.cordova.plugin.inappbrowserxwalk@0.3.3",
+  "_inBundle": false,
+  "_location": "/com.shoety.cordova.plugin.inappbrowserxwalk",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "git",
+    "raw": "https://github.com/mrjoes/cordova-plugin-inappbrowserxwalk#patch-1",
+    "rawSpec": "https://github.com/mrjoes/cordova-plugin-inappbrowserxwalk#patch-1",
+    "saveSpec": "git+https://github.com/mrjoes/cordova-plugin-inappbrowserxwalk.git#patch-1",
+    "fetchSpec": "https://github.com/mrjoes/cordova-plugin-inappbrowserxwalk.git",
+    "gitCommittish": "patch-1"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "git+https://github.com/mrjoes/cordova-plugin-inappbrowserxwalk.git#51fa4cdba7d78be8255b08fd7a2b0caaf4dfb4bf",
+  "_spec": "https://github.com/mrjoes/cordova-plugin-inappbrowserxwalk#patch-1",
+  "_where": "/home/denis/src/kioskapp",
+  "bundleDependencies": false,
+  "cordova_name": "InAppBrowser Crosswalk",
+  "deprecated": false,
+  "description": "This plugin provides a web browser view, which is using the Crosswalk engine to render pages.",
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.4.0"
+    }
+  ],
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "name": "com.shoety.cordova.plugin.inappbrowserxwalk",
+  "platforms": [
+    "android"
+  ],
+  "version": "0.3.3"
+}

@@ -4,12 +4,12 @@
   "description": "A kiosk app for android",
   "main": "index.js",
   "dependencies": {
+    "com.shoety.cordova.plugin.inappbrowserxwalk": "git+https://github.com/mrjoes/cordova-plugin-inappbrowserxwalk.git#patch-1",
     "cordova": "~8.0.0",
     "cordova-android": "6.3.0",
     "cordova-android-support-gradle-release": "^1.4.2",
     "cordova-custom-config": "~3.1.2",
-    "cordova-plugin-compat": "^1.2.0",
-    "cordova-plugin-crosswalk-webview": "~2.4.0",
+    "cordova-plugin-crosswalk-webview": "^2.4.0",
     "cordova-plugin-whitelist": "1",
     "plist": "~3.0.1"
   },
@@ -41,6 +41,9 @@
     "plugins": {
       "cordova-plugin-whitelist": {},
       "cordova-custom-config": {},
+      "cordova-android-support-gradle-release": {
+        "ANDROID_SUPPORT_VERSION": "27.+"
+      },
       "cordova-plugin-crosswalk-webview": {
         "XWALK_VERSION": "23+",
         "XWALK_LITEVERSION": "xwalk_core_library_canary:17+",
@@ -48,9 +51,7 @@
         "XWALK_MODE": "embedded",
         "XWALK_MULTIPLEAPK": "true"
       },
-      "cordova-android-support-gradle-release": {
-        "ANDROID_SUPPORT_VERSION": "27.+"
-      }
+      "com.shoety.cordova.plugin.inappbrowserxwalk": {}
     }
   }
 }
