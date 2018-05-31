@@ -11,7 +11,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "build": "cordova prepare && cordova build android",
+    "build": "cordova prepare || cordova build android",
     "postinstall": "cd www/jxcore && npm install",
     "test": "npm run build"
   },
