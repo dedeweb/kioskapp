@@ -21,6 +21,3 @@ install:
 
 script:
   - npm run build
-  
-release:
-  - exit 0  
