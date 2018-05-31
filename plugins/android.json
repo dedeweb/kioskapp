@@ -13,17 +13,6 @@
     "cordova-plugin-app-version": {
       "PACKAGE_NAME": "fr.dedeweb.kioskApp"
     },
-    "cordova-plugin-crosswalk-webview": {
-      "XWALK_VERSION": "23+",
-      "XWALK_LITEVERSION": "xwalk_core_library_canary:17+",
-      "XWALK_COMMANDLINE": "--disable-pull-to-refresh-effect",
-      "XWALK_MODE": "embedded",
-      "XWALK_MULTIPLEAPK": "true",
-      "PACKAGE_NAME": "fr.dedeweb.kioskApp"
-    },
-    "cordova-plugin-media-capture": {
-      "PACKAGE_NAME": "fr.dedeweb.kioskApp"
-    },
     "cordova-plugin-networkinterface": {
       "PACKAGE_NAME": "fr.dedeweb.kioskApp"
     },
@@ -39,11 +28,18 @@
     "cordova-android-support-gradle-release": {
       "ANDROID_SUPPORT_VERSION": "27.+",
       "PACKAGE_NAME": "fr.dedeweb.kioskApp"
-    }
-  },
-  "dependent_plugins": {
-    "cordova-plugin-file": {
+    },
+    "cordova-plugin-crosswalk-webview": {
+      "XWALK_VERSION": "23+",
+      "XWALK_LITEVERSION": "xwalk_core_library_canary:17+",
+      "XWALK_COMMANDLINE": "--disable-pull-to-refresh-effect",
+      "XWALK_MODE": "embedded",
+      "XWALK_MULTIPLEAPK": "true",
+      "PACKAGE_NAME": "fr.dedeweb.kioskApp"
+    },
+    "com.shoety.cordova.plugin.inappbrowserxwalk": {
       "PACKAGE_NAME": "fr.dedeweb.kioskApp"
     }
-  }
+  },
+  "dependent_plugins": {}
 }
