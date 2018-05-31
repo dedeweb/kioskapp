@@ -1,51 +1,49 @@
 {
-    "prepare_queue": {
-        "installed": [],
-        "uninstalled": []
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-custom-config": {
+      "PACKAGE_NAME": "fr.dedeweb.kioskApp"
     },
-    "config_munge": {
-        "files": {}
+    "cordova-plugin-app-version": {
+      "PACKAGE_NAME": "fr.dedeweb.kioskApp"
     },
-    "installed_plugins": {
-        "com.shoety.cordova.plugin.inappbrowserxwalk": {
-            "PACKAGE_NAME": "fr.dedeweb.kioskApp"
-        },
-        "cordova-custom-config": {
-            "PACKAGE_NAME": "fr.dedeweb.kioskApp"
-        },
-        "cordova-plugin-app-version": {
-            "PACKAGE_NAME": "fr.dedeweb.kioskApp"
-        },
-        "cordova-plugin-crosswalk-webview": {
-            "XWALK_VERSION": "22+",
-            "XWALK_LITEVERSION": "xwalk_core_library_canary:17+",
-            "XWALK_COMMANDLINE": "--disable-pull-to-refresh-effect",
-            "XWALK_MODE": "embedded",
-            "XWALK_MULTIPLEAPK": "true",
-            "PACKAGE_NAME": "fr.dedeweb.kioskApp"
-        },
-        "cordova-plugin-media-capture": {
-            "PACKAGE_NAME": "fr.dedeweb.kioskApp"
-        },
-        "cordova-plugin-networkinterface": {
-            "PACKAGE_NAME": "fr.dedeweb.kioskApp"
-        },
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "fr.dedeweb.kioskApp"
-        },
-        "io.jxcore.node": {
-            "PACKAGE_NAME": "fr.dedeweb.kioskApp"
-        },
-        "org.apache.cordova.shell-exec": {
-            "PACKAGE_NAME": "fr.dedeweb.kioskApp"
-        }
+    "cordova-plugin-crosswalk-webview": {
+      "XWALK_VERSION": "23+",
+      "XWALK_LITEVERSION": "xwalk_core_library_canary:17+",
+      "XWALK_COMMANDLINE": "--disable-pull-to-refresh-effect",
+      "XWALK_MODE": "embedded",
+      "XWALK_MULTIPLEAPK": "true",
+      "PACKAGE_NAME": "fr.dedeweb.kioskApp"
     },
-    "dependent_plugins": {
-        "cordova-plugin-compat": {
-            "PACKAGE_NAME": "fr.dedeweb.kioskApp"
-        },
-        "cordova-plugin-file": {
-            "PACKAGE_NAME": "fr.dedeweb.kioskApp"
-        }
+    "cordova-plugin-media-capture": {
+      "PACKAGE_NAME": "fr.dedeweb.kioskApp"
+    },
+    "cordova-plugin-networkinterface": {
+      "PACKAGE_NAME": "fr.dedeweb.kioskApp"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "fr.dedeweb.kioskApp"
+    },
+    "io.jxcore.node": {
+      "PACKAGE_NAME": "fr.dedeweb.kioskApp"
+    },
+    "org.apache.cordova.shell-exec": {
+      "PACKAGE_NAME": "fr.dedeweb.kioskApp"
+    },
+    "cordova-android-support-gradle-release": {
+      "ANDROID_SUPPORT_VERSION": "27.+",
+      "PACKAGE_NAME": "fr.dedeweb.kioskApp"
     }
+  },
+  "dependent_plugins": {
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "fr.dedeweb.kioskApp"
+    }
+  }
 }

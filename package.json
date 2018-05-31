@@ -5,13 +5,17 @@
   "main": "index.js",
   "dependencies": {
     "cordova": "~8.0.0",
-    "cordova-custom-config": "~5.0.2",
-    "plist": "~3.0.1",
-    "cordova-android": "~6.0.0"
+    "cordova-android": "6.3.0",
+    "cordova-android-support-gradle-release": "^1.4.2",
+    "cordova-custom-config": "~3.1.2",
+    "cordova-plugin-compat": "^1.2.0",
+    "cordova-plugin-crosswalk-webview": "~2.4.0",
+    "cordova-plugin-whitelist": "1",
+    "plist": "~3.0.1"
   },
   "devDependencies": {},
   "scripts": {
-    "build": "cordova prepare || cordova build android",
+    "build": "cordova prepare && cordova build android",
     "postinstall": "cd www/jxcore && npm install",
     "test": "npm run build"
   },
@@ -33,6 +37,20 @@
   "cordova": {
     "platforms": [
       "android"
-    ]
+    ],
+    "plugins": {
+      "cordova-plugin-whitelist": {},
+      "cordova-custom-config": {},
+      "cordova-plugin-crosswalk-webview": {
+        "XWALK_VERSION": "23+",
+        "XWALK_LITEVERSION": "xwalk_core_library_canary:17+",
+        "XWALK_COMMANDLINE": "--disable-pull-to-refresh-effect",
+        "XWALK_MODE": "embedded",
+        "XWALK_MULTIPLEAPK": "true"
+      },
+      "cordova-android-support-gradle-release": {
+        "ANDROID_SUPPORT_VERSION": "27.+"
+      }
+    }
   }
 }
