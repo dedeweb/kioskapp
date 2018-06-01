@@ -20,6 +20,7 @@
 var app = {
 	
 	url: null,
+  apiUrl: null,
 	browser: null,
 	fullScreen: false,
     // Application Constructor
@@ -57,19 +58,47 @@ var app = {
 		
 		$(document).ready(function () {
 			$('#btnLoadUrl').click(function (){
-				that.loadUrl($('#txtUrl').val());
+        
+        if($('#fsCheck').is(":checked")) {
+          that.loadUrl($('#txtUrl').val());  
+        } else {
+          that.loadUrlTest($('#txtUrl').val());  
+        }
 			});
+      
+       $('#btnTestApi').click(function () {
+         that.testApi(that.apiUrl);
+       });
 			that.displayAddress();
 		});
 		
     },
-	
+	testApi: function(apiUrl) {
+    $('#apiCheckResult').html('...');
+    if (apiUrl) {
+        $.get(apiUrl + '/version').done(function( data ) {
+          if(data.app === 'kioskApp') {
+            $('#apiCheckResult').html('OK, version = ' + data.version);  
+          } else {
+            $('#apiCheckResult').html('wrong app name : ' + data.app);
+          }
+        }).fail(function() {
+          $('#apiCheckResult').html('api call fail :(' );
+        });
+     }
+  },
 	loadUrl: function (url) {
 		console.log('load url : ' + url);
 		this.url = url;
 		this.reload();
 		this.goFullScreen();
 	},
+  
+  loadUrlTest: function(url) {
+    console.log('load url test : ' + url);
+		this.url = url;
+		this.reload();
+  },
 	
 	reload: function () {
 		if(this.browser) {
@@ -80,11 +109,22 @@ var app = {
 	},
 
 	displayAddress: function () {
-        networkinterface.getIPAddress(function (ip) {
-            $('#srvAdr').text( 'http://' + ip + ':1664' );
-		}, function (error) {
-			 $('#srvAdr').text('error getting ip : ' + error);
-		});
+    var that = this;
+    networkinterface.getWiFiIPAddress(function (ipInfo) {
+      $('#srvAdr').text( '[wifi] http://' + ipInfo.ip + ':1664' );
+      that.apiUrl = 'http://' + ipInfo.ip + ':1664';
+      $('#btnTestApi').attr('disabled', false);
+      that.testApi(that.apiUrl);
+    }, function () {
+      networkinterface.getCarrierIPAddress(function (ipInfo) {
+        $('#srvAdr').text( '[carrier] http://' + ipInfo.ip + ':1664' );
+        that.apiUrl = 'http://' + ipInfo.ip + ':1664';
+        $('#btnTestApi').attr('disabled', false);
+        that.testApi(that.apiUrl);
+      }, function(error) {
+        $('#srvAdr').text('error getting ip : ' + error);      
+      });
+    });
 	},
 	goFullScreen: function () {
 		if(!this.fullScreen) {

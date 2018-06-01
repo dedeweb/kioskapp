@@ -48,14 +48,6 @@
     "is_top_level": true,
     "variables": {}
   },
-  "cordova-plugin-networkinterface": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-networkinterface"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
   "cordova-plugin-compat": {
     "source": {
       "type": "registry",
@@ -84,6 +76,14 @@
     "source": {
       "type": "registry",
       "id": "https://github.com/mrjoes/cordova-plugin-inappbrowserxwalk#patch-1"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-networkinterface": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-networkinterface"
     },
     "is_top_level": true,
     "variables": {}

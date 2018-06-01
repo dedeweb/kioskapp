@@ -39,5 +39,6 @@
         <variable name="XWALK_MULTIPLEAPK" value="true" />
     </plugin>
     <plugin name="com.shoety.cordova.plugin.inappbrowserxwalk" spec="https://github.com/mrjoes/cordova-plugin-inappbrowserxwalk#patch-1" />
+    <plugin name="cordova-plugin-networkinterface" spec="^2.0.0" />
     <engine name="android" spec="6.3.0" />
 </widget>
