@@ -14,10 +14,12 @@ branches:
 before_install:
   - curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
   - sudo apt-get install nodejs
+  - sudo npm install -g cordova
 
 install:
   - npm install
   - echo y | android update sdk -u --filter android-24
 
 script:
-  - npm run build
+  - cordova prepare
+  - cordova build android
