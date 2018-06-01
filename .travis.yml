@@ -21,6 +21,7 @@ before_install:
   - sudo apt-get install nodejs
 
 install:
+  - sudo npm install -g cordova
   - npm install
 
 script:
