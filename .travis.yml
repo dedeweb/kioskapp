@@ -25,5 +25,5 @@ install:
   - npm install
 
 script:
-  - cordova prepare
-  - cordova build android
+  - node node_modules/cordova/bin/cordova prepare
+  - node node_modules/cordova/bin/cordova build android
