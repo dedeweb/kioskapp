@@ -1,7 +1,6 @@
 #.travis.yml
 
 language: android
-sudo: false
 
 node_js:
   - "8.11"
@@ -25,5 +24,4 @@ install:
   - npm install
 
 script:
-  - node node_modules/cordova/bin/cordova prepare
-  - node node_modules/cordova/bin/cordova build android
+  - npm run build
