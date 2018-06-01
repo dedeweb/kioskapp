@@ -4,8 +4,13 @@ language: android
 
 node_js:
   - "8.11"
-
-sudo: false
+  
+android:
+  components:
+    - tools
+    - platform-tools
+    - build-tools-26.0.3
+    - android-26
 
 branches:
   only:
