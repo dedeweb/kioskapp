@@ -1,6 +1,7 @@
 #.travis.yml
 
 language: android
+sudo: false
 
 node_js:
   - "8.11"
@@ -21,9 +22,8 @@ before_install:
   - sudo apt-get install nodejs
 
 install:
-  - sudo npm install -g cordova 
+  - npm install -g cordova 
   - npm install
-  - sudo chmod 777 /home/travis/.config/configstore/insight-cordova.json
 
 script:
   - cordova prepare
