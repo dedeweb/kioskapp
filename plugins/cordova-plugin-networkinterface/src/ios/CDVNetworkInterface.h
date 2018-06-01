@@ -5,6 +5,8 @@
 
 @interface CDVNetworkInterface : CDVPlugin
 
-- (void) getIPAddress:(CDVInvokedUrlCommand*)command;
+- (void) getWiFiIPAddress:(CDVInvokedUrlCommand*)command;
+- (void) getCarrierIPAddress:(CDVInvokedUrlCommand*)command;
+- (void) getHttpProxyInformation:(CDVInvokedUrlCommand*)command;
 
 @end

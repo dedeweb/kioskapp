@@ -10,6 +10,7 @@
     "cordova-android-support-gradle-release": "^1.4.2",
     "cordova-custom-config": "~3.1.2",
     "cordova-plugin-crosswalk-webview": "^2.4.0",
+    "cordova-plugin-networkinterface": "^2.0.0",
     "cordova-plugin-whitelist": "1",
     "plist": "~3.0.1"
   },
@@ -51,7 +52,8 @@
         "XWALK_MODE": "embedded",
         "XWALK_MULTIPLEAPK": "true"
       },
-      "com.shoety.cordova.plugin.inappbrowserxwalk": {}
+      "com.shoety.cordova.plugin.inappbrowserxwalk": {},
+      "cordova-plugin-networkinterface": {}
     }
   }
 }

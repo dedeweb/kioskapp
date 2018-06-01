@@ -13,9 +13,6 @@
     "cordova-plugin-app-version": {
       "PACKAGE_NAME": "fr.dedeweb.kioskApp"
     },
-    "cordova-plugin-networkinterface": {
-      "PACKAGE_NAME": "fr.dedeweb.kioskApp"
-    },
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "fr.dedeweb.kioskApp"
     },
@@ -38,6 +35,9 @@
       "PACKAGE_NAME": "fr.dedeweb.kioskApp"
     },
     "com.shoety.cordova.plugin.inappbrowserxwalk": {
+      "PACKAGE_NAME": "fr.dedeweb.kioskApp"
+    },
+    "cordova-plugin-networkinterface": {
       "PACKAGE_NAME": "fr.dedeweb.kioskApp"
     }
   },
