@@ -1,7 +1,7 @@
 #!/bin/sh
 #https://gist.github.com/willprice/e07efd73fb7f13f917ea
 #https://medium.com/@daggerdwivedi/push-your-apk-to-your-github-repository-from-travis-11e397ec430d
-built_apk_dir = $TRAVIS_BUILD_DIR/platforms/android/build/outputs/apk
+built_apk_dir = "$TRAVIS_BUILD_DIR/platforms/android/build/outputs/apk"
 
 copy_files() {
   cp -R $built_apk_dir $TRAVIS_BUILD_DIR/apk/ 
