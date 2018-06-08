@@ -19,7 +19,7 @@ commit_apk_files() {
 
 upload_files() {
   git remote set-url origin https://${GITHUB_KEY}@github.com/dedeweb/kioskapp.git > /dev/null 2>&1
-  git push --quiet --set-upstream origin master
+  git push --quiet
 }
 
 if [ ! -f $built_apk_dir/android-armv7-release-unsigned.apk ] || [ ! -f $built_apk_dir/android-x86-release-unsigned.apk ]; then
