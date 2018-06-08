@@ -23,7 +23,7 @@ upload_files() {
   git push --quiet
 }
 
-if [ ! -f $built_apk_dir/android-armv7-release-unsigned.apk ] || [ ! -f $built_apk_dir/android-x86-release-unsigned.apk ]; then
+if [ ! -f $built_apk_dir/android-armv7-debug.apk ] || [ ! -f $built_apk_dir/android-x86-debug.apk ]; then
     echo -e "Error : build file not present :( \n in $built_apk_dir"
     exit 1
 fi
