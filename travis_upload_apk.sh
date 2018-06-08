@@ -18,7 +18,7 @@ commit_apk_files() {
 }
 
 upload_files() {
-  git remote add origin https://${GITHUB_KEY}@github.com/dedeweb/kioskapp.git > /dev/null 2>&1
+  git remote set-url origin https://${GITHUB_KEY}@github.com/dedeweb/kioskapp.git > /dev/null 2>&1
   git push --quiet --set-upstream origin master
 }
 
