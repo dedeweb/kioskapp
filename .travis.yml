@@ -25,4 +25,4 @@ install:
 
 script:
   - npm run build
-  - ./travis_upload_apk.sh
+  - sh travis_upload_apk.sh
