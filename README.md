@@ -4,6 +4,11 @@ A android cordova application to display a web page fullscreen and modal. Device
 not disabled. 
 For example, this app is used by tamerbooth (https://github.com/dedeweb/tamerbooth) 
 
+**:bangbang: This app is in alpha verions (not finished, not stable).**
+
+**:bangbang: This app only works on android _rooted_ devices.**
+
+
 ## Installation
 
 	$ npm install
