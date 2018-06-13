@@ -82,8 +82,8 @@ var app = {
           } else {
             $('#apiCheckResult').html('wrong app name : ' + data.app);
           }
-        }).fail(function() {
-          $('#apiCheckResult').html('api call fail :(' );
+        }).fail(function(ex) {
+          $('#apiCheckResult').html('api call fail :(' + JSON.stringify(ex) );
         });
      }
   },
