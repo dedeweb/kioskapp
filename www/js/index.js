@@ -47,6 +47,7 @@ var app = {
                     jxcore('reload').register(() => { this.jxc_reload(); });
                     jxcore('exit').register( () => { this.jxc_exitFS(); });
                     jxcore('fullscreen').register(() => { this.jxc_goFS(); });
+                    this.refreshAPIUrl();
                 }
             });
         });
@@ -56,8 +57,8 @@ var app = {
         $(document).ready(() => {
             this.hideRefreshApi();
 
-            $('#refreshButtonUrl').click(() => { this.refreshAPIUrl();});
-            $('#refreshButton').click(() => { this.testApi();});
+           
+            $('#refreshButton').click(() => { this.testApi(this.apiUrl);});
             $('#errDetails').click(() => { $('#details').toggle(); });
 
             $('#windowedLbl').hide();
@@ -74,10 +75,7 @@ var app = {
 
             });
 
-            $('#loadUrlBtn').click(() => {this.loadUrl($('#url-field').val(), $('.mdc-switch input').is(':checked') );});
-
-
-            this.refreshAPIUrl();
+            $('#loadUrlBtn').click(() => {this.loadUrl($('#url-field').val(), $('.mdc-switch input').is(':checked') );});           
         });
     },
 
@@ -108,6 +106,9 @@ var app = {
         $('#apiOk').show();
         $('#apiOk .msg').text(msg);
         $('#loadUrlBtn').removeAttr('disabled');
+        $('#errDetails').hide();
+        $('#details').hide();
+        $('#details').text('');
     },
     hideRefreshApi: function() {
         $('#apiStatus').hide();
@@ -118,8 +119,10 @@ var app = {
     },
 
     refreshAPIUrl: function () {
+        $('#refreshButtonUrl').click(() => { this.refreshAPIUrl();});
+      
         this.hideRefreshApi();
-        $('#refreshButtonUrl').addClass('animate-spin');
+        $('#refreshButtonUrl i').addClass('animate-spin');
         if(typeof networkinterface === 'undefined') {
             $('#refreshButtonUrl').removeClass('animate-spin');
             this.dispAPIUrl('error getting ip');
@@ -127,22 +130,22 @@ var app = {
             networkinterface.getWiFiIPAddress((ipInfo) => {
                 this.dispAPIUrl( '[wifi] http://' + ipInfo.ip + ':1664' );
                 this.apiUrl = 'http://' + ipInfo.ip + ':1664';
-                $('#refreshButtonUrl').removeClass('animate-spin');
+                $('#refreshButtonUrl i').removeClass('animate-spin');
                 this.testApi(this.apiUrl);
-            }, function () {
+            }, () => {
                 networkinterface.getCarrierIPAddress( (ipInfo) => {
                     this.dispAPIUrl( '[carrier] http://' + ipInfo.ip + ':1664' );
                     this.apiUrl = 'http://' + ipInfo.ip + ':1664';
-                    $('#refreshButtonUrl').removeClass('animate-spin');
+                    $('#refreshButtonUrl i').removeClass('animate-spin');
                     this.testApi(this.apiUrl);
                 }, (error) => {
-                    $('#refreshButtonUrl').removeClass('animate-spin');
+                    $('#refreshButtonUrl i').removeClass('animate-spin');
                     this.dispAPIUrl('error getting ip : ' + error);
                 });
             });
         }
     },
-    testApi: function () {
+    testApi: function (apiUrl) {
         this.apiGoLoading();
         if (apiUrl) {
             $.get(apiUrl + '/version').done(( data ) => {
