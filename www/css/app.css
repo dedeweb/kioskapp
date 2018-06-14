@@ -1,0 +1,70 @@
+@import "./mdc.top-app-bar.css";
+@import "./mdc.card.css";
+@import "./mdc.textfield.css";
+@import "./mdc.switch.css";
+@import "./mdc.button.css";
+@import "./fontello.css";
+@import "./animation.css";
+
+body {
+    margin:0;
+    background: #fafafa;
+    font-family: 'helvetica', 'sans-serif';
+}
+
+.main-wrapper {
+
+    position: absolute;
+
+    top: 74px; /* 64 + 10 */
+    left: 10px;
+    right: 10px;
+}
+
+.mdc-card {
+    padding: 20px;
+    margin: 10px;
+}
+
+.lbl {
+    display: inline-block;
+    width: 55px;
+}
+#apiUrl {
+    color: #9e9e9e;
+}
+
+#showDetails {
+    color: #02779E;
+    text-decoration: underline;
+    font-size: 0.8em;
+    cursor: pointer;
+}
+
+#details {
+    margin-left: 60px;
+    color: #9e9e9e;
+    font-size: 0.8em;
+    padding: 5px;
+}
+.margin-top {
+    margin-top: 15px;
+}
+.refresh-button {
+    font-size: 1.2em;
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+#loadUrlBtn {
+    margin-top: -10px;
+    float: right;
+}
+
+.color-red {
+    color: #D74F4F;
+}
+
+.color-green {
+    color: #18B598;
+}

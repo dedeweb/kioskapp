@@ -28,41 +28,69 @@
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
-        <meta name="format-detection" content="telephone=no">
+        <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">-->
+      <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' 'unsafe-eval'; script-src * 'unsafe-inline' 'unsafe-eval'; connect-src * 'unsafe-inline'; img-src * data: blob: 'unsafe-inline'; frame-src *; style-src * 'unsafe-inline';">
+
+
+      <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
+        <meta name="theme-color" content="#02779E" />
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        <link rel="stylesheet" type="text/css" href="css/index.css">
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-        <title>Hello World</title>
+        <link rel="stylesheet" type="text/css" href="css/app.css">
+        <title>Root Kiosk</title>
     </head>
     <body>
-        <div class="page-wrapper container">
-            <div class="display-remote-control">
-                <span>remote control : </span>
-                <span id="srvAdr"> not started :(</span>
+    <header class="mdc-top-app-bar">
+        <div class="mdc-top-app-bar__row">
+            <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+                <span class="mdc-top-app-bar__title">Root Kiosk</span>
+            </section>
+        </div>
+    </header>
+    <div class="main-wrapper">
+        <div class="mdc-card">
+            <div>
+                <span class="lbl">API :</span> <span id="apiUrl"></span>
+                <a class="refresh-button" id="refreshButtonUrl"><i class="icon-arrows-cw animate-spin"></i> </a>
             </div>
-            <input type="text" class="form-control" id="txtUrl"/>
-            <div class="form-group">
-              <input type="checkbox" checked class="form-check-input" id="fsCheck">
-              <label class="form-check-label" for="fsCheck">fullscreen</label>
+            <div id="apiStatus" class="margin-top">
+                <span class="lbl">check: </span>
+                <span id="apiFail" class="color-red"><span class="err-msg">fail</span>  <i class="icon-cancel-circle"></i> </span>
+                <span id="apiOk" class="color-green"><span class="msg">OK, V=1.1.0</span>  <i class="icon-ok-circle"></i> </span>
+                <a class="refresh-button" id="refreshButton"><i class="icon-arrows-cw"></i> </a>
             </div>
-            <button class="btn btn-primary" id="btnLoadUrl">
-                load
-            </button>
-          
-            <button class="btn btn-primary" id="btnTestApi" disabled="true">
-                test api
-            </button>
-            <div id="apiCheckResult">
-              ..
+            <div id="errDetails">
+                <span class="lbl"> </span> <a id="showDetails">show details</a>
+                <div id="details"></div>
             </div>
 
         </div>
-        <script type="text/javascript" src="cordova.js"></script>
-		<script type="text/javascript" src="js/lib/jquery-3.1.1.min.js"></script>
+        <div class="mdc-card">
+            <div class="mdc-text-field">
+                <input type="text" id="url-field" class="mdc-text-field__input">
+                <label class="mdc-floating-label" for="url-field">Url</label>
+                <div class="mdc-line-ripple"></div>
+            </div>
+            <div class="margin-top">
+                <div class="mdc-switch">
+                    <input type="checkbox" id="basic-switch" class="mdc-switch__native-control" role="switch" checked>
+                    <div class="mdc-switch__background">
+                        <div class="mdc-switch__knob"></div>
+                    </div>
+                </div>
+                <label for="basic-switch" id="fsLabel">full screen <i class="icon-attention color-red"></i> </label>
+                <label for="basic-switch" id="windowedLbl">windowed</label>
+                <button class="mdc-button mdc-button--raised" id="loadUrlBtn" disabled>
+                    load URL
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="cordova.js"></script>
+		<script type="text/javascript" src="js/lib/jquery.js"></script>
         <script type="text/javascript" src="js/lib/tether.min.js"></script>
-        <script type="text/javascript" src="js/lib/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/lib/mdc.textfield.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
     </body>
 </html>
