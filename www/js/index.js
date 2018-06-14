@@ -18,135 +18,196 @@
  */
 
 var app = {
-	
-	url: null,
-  apiUrl: null,
-	browser: null,
-	fullScreen: false,
-    // Application Constructor
-    initialize: function() {
-        document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
+    fullScreen: false,
+    url: '',
+    apiUrl: '',
+    browser: null,
+    initDevice: function () {
+        document.addEventListener('deviceready', () => {
+            this.initJxcore();
+            this.initJQuery();
+        }, false);
     },
 
-    // deviceready Event Handler
-    //
-    // Bind any cordova events here. Common events are:
-    // 'pause', 'resume', etc.
-    onDeviceReady: function() {
-		var that = this;
-        //window.inAppBrowserXwalk.open('https://webrtc.github.io/samples/src/content/getusermedia/gum/', {toolbarHeight: '0'});
-		jxcore.isReady(function() {
-			console.log('JXCORE ready!'); 
-			
-			 jxcore('app.js').loadMainFile(function(ret, err) {
-			  if (err) {
-				console.error('JXCORE err' + JSON.stringify(err));
-			  } else {
-				console.log('JXCORE Loaded');
-				//jxcore_ready();
-				jxcore('getVersion').register(function (callback) {
-					cordova.getAppVersion.getVersionNumber(callback);
-				});
-				
-				jxcore('loadUrl').register(function (url) { that.loadUrl(url); });
-				jxcore('reload').register(function () { that.reload(); });
-				jxcore('exit').register(function () { that.exitFullScreen(); });
-				jxcore('fullscreen').register(function () { that.goFullScreen(); });
-			  }
-			});
-		});
-		
-		$(document).ready(function () {
-			$('#btnLoadUrl').click(function (){
-        
-        if($('#fsCheck').is(":checked")) {
-          that.loadUrl($('#txtUrl').val());  
-        } else {
-          that.loadUrlTest($('#txtUrl').val());  
-        }
-			});
-      
-       $('#btnTestApi').click(function () {
-         that.testApi(that.apiUrl);
-       });
-			that.displayAddress();
-		});
-		
-    },
-	testApi: function(apiUrl) {
-    $('#apiCheckResult').html('...');
-    if (apiUrl) {
-        $.get(apiUrl + '/version').done(function( data ) {
-          if(data.app === 'kioskApp') {
-            $('#apiCheckResult').html('OK, version = ' + data.version);  
-          } else {
-            $('#apiCheckResult').html('wrong app name : ' + data.app);
-          }
-        }).fail(function(ex) {
-          $('#apiCheckResult').html('api call fail :(' + JSON.stringify(ex) );
+    initJxcore: function () {
+        jxcore.isReady(() => {
+            console.log('JXCORE ready!');
+
+            jxcore('app.js').loadMainFile((ret, err) => {
+                if (err) {
+                    console.error('JXCORE err' + JSON.stringify(err));
+                } else {
+                    console.log('JXCORE Loaded');
+                    //jxcore_ready();
+                    jxcore('getVersion').register(function (callback) {
+                        cordova.getAppVersion.getVersionNumber(callback);
+                    });
+
+                    jxcore('loadUrl').register( (url) => { this.jxc_loadUrl(url); });
+                    jxcore('reload').register(() => { this.jxc_reload(); });
+                    jxcore('exit').register( () => { this.jxc_exitFS(); });
+                    jxcore('fullscreen').register(() => { this.jxc_goFS(); });
+                }
+            });
         });
-     }
-  },
-	loadUrl: function (url) {
-		console.log('load url : ' + url);
-		this.url = url;
-		this.reload();
-		this.goFullScreen();
-	},
-  
-  loadUrlTest: function(url) {
-    console.log('load url test : ' + url);
-		this.url = url;
-		this.reload();
-  },
-	
-	reload: function () {
-		if(this.browser) {
-			this.browser.close();	
-		}
-		$('body').hide();//hiding admin page to user. 
-		this.browser = window.inAppBrowserXwalk.open(this.url, {toolbarHeight: '0'});
-	},
+    },
+    initJQuery: function() {
+        const textField = new mdc.textfield.MDCTextField(document.querySelector('.mdc-text-field'));
+        $(document).ready(() => {
+            this.hideRefreshApi();
 
-	displayAddress: function () {
-    var that = this;
-    networkinterface.getWiFiIPAddress(function (ipInfo) {
-      $('#srvAdr').text( '[wifi] http://' + ipInfo.ip + ':1664' );
-      that.apiUrl = 'http://' + ipInfo.ip + ':1664';
-      $('#btnTestApi').attr('disabled', false);
-      that.testApi(that.apiUrl);
-    }, function () {
-      networkinterface.getCarrierIPAddress(function (ipInfo) {
-        $('#srvAdr').text( '[carrier] http://' + ipInfo.ip + ':1664' );
-        that.apiUrl = 'http://' + ipInfo.ip + ':1664';
-        $('#btnTestApi').attr('disabled', false);
-        that.testApi(that.apiUrl);
-      }, function(error) {
-        $('#srvAdr').text('error getting ip : ' + error);      
-      });
-    });
-	},
-	goFullScreen: function () {
-		if(!this.fullScreen) {
-			var that = this;
-			this.fullScreen = true;
-			window.ShellExec.exec(['su', '-c', 'service call activity 42 s16 com.android.systemui'], function(res){
-				if(res.exitStatus !== 0) {
-					console.error('fullscreen error ' + res.output);
-					that.fullScreen = false;
-				}
-			});
-		}
-	},
-	exitFullScreen: function () {
-		this.fullScreen = false;
-		window.ShellExec.exec(['su', '-c', 'LD_LIBRARY_PATH=/vendor/lib:/system/lib am startservice -n com.android.systemui/.SystemUIService'], function(res){
-			if(res.exitStatus !== 0) {
-				console.error('exit fullscreen error ' + res.output);
-			}
-		});
-	}
+            $('#refreshButtonUrl').click(() => { this.refreshAPIUrl();});
+            $('#refreshButton').click(() => { this.testApi();});
+            $('#errDetails').click(() => { $('#details').toggle(); });
 
+            $('#windowedLbl').hide();
+
+            $('.mdc-switch input:checkbox').change(function() {
+                if($('.mdc-switch input').is(':checked') ) {
+                    $('#windowedLbl').hide();
+                    $('#fsLabel').show();
+                } else {
+                    $('#windowedLbl').show();
+                    $('#fsLabel').hide();
+                }
+
+
+            });
+
+            $('#loadUrlBtn').click(() => {this.loadUrl($('#url-field').val(), $('.mdc-switch input').is(':checked') );});
+
+
+            this.refreshAPIUrl();
+        });
+    },
+
+    //U.I management callback& funcs
+    apiGoLoading: function () {
+        $('#apiStatus').show();
+        $('#apiFail').hide();
+        $('#apiOk').hide();
+        $('#refreshButton i').addClass('animate-spin');
+    },
+    apiStopLoading: function () {
+        $('#refreshButton i').removeClass('animate-spin');
+    },
+    dispAPIUrl: function (url) {
+        $('#apiUrl').text(url);
+    },
+    dispAPIErr: function (err, debugErr) {
+        $('#apiStatus').show();
+        $('#apiFail').show();
+        $('#apiFail .err-msg').text(err);
+        if(debugErr) {
+            $('#errDetails').show();
+            $('#details').text(debugErr);
+        }
+    },
+    dispAPIOK: function (msg) {
+        $('#apiStatus').show();
+        $('#apiOk').show();
+        $('#apiOk .msg').text(msg);
+        $('#loadUrlBtn').removeAttr('disabled');
+    },
+    hideRefreshApi: function() {
+        $('#apiStatus').hide();
+        $('#apiFail').hide();
+        $('#apiOk').hide();
+        $('#errDetails').hide();
+        $('#details').hide();
+    },
+
+    refreshAPIUrl: function () {
+        this.hideRefreshApi();
+        $('#refreshButtonUrl').addClass('animate-spin');
+        if(typeof networkinterface === 'undefined') {
+            $('#refreshButtonUrl').removeClass('animate-spin');
+            this.dispAPIUrl('error getting ip');
+        } else {
+            networkinterface.getWiFiIPAddress((ipInfo) => {
+                this.dispAPIUrl( '[wifi] http://' + ipInfo.ip + ':1664' );
+                this.apiUrl = 'http://' + ipInfo.ip + ':1664';
+                $('#refreshButtonUrl').removeClass('animate-spin');
+                this.testApi(this.apiUrl);
+            }, function () {
+                networkinterface.getCarrierIPAddress( (ipInfo) => {
+                    this.dispAPIUrl( '[carrier] http://' + ipInfo.ip + ':1664' );
+                    this.apiUrl = 'http://' + ipInfo.ip + ':1664';
+                    $('#refreshButtonUrl').removeClass('animate-spin');
+                    this.testApi(this.apiUrl);
+                }, (error) => {
+                    $('#refreshButtonUrl').removeClass('animate-spin');
+                    this.dispAPIUrl('error getting ip : ' + error);
+                });
+            });
+        }
+    },
+    testApi: function () {
+        this.apiGoLoading();
+        if (apiUrl) {
+            $.get(apiUrl + '/version').done(( data ) => {
+                if(data.app === 'kioskApp') {
+                    this.dispAPIOK('OK, version = ' + data.version);
+                } else {
+                    this.dispAPIErr('wrong app name : ' + data.app);
+                }
+                this.apiStopLoading();
+            }).fail((ex) => {
+                this.dispAPIErr('api call fail :(' ,JSON.stringify(ex) );
+                this.apiStopLoading();
+            });
+        }
+    },
+    // browsing management funcs
+    goFullScreen : function () {
+        if(!this.fullScreen) {
+            this.fullScreen = true;
+            window.ShellExec.exec(['su', '-c', 'service call activity 42 s16 com.android.systemui'], (res) => {
+                if(res.exitStatus !== 0) {
+                    console.error('fullscreen error ' + res.output);
+                    this.fullScreen = false;
+                }
+            });
+        }
+    },
+    exitFullscreen: function () {
+        this.fullScreen = false;
+        window.ShellExec.exec(['su', '-c', 'LD_LIBRARY_PATH=/vendor/lib:/system/lib am startservice -n com.android.systemui/.SystemUIService'], function(res){
+            if(res.exitStatus !== 0) {
+                console.error('exit fullscreen error ' + res.output);
+            }
+        });
+    },
+    loadUrl: function(url, kiosk) {
+        console.log('load url : ' + url);
+        this.url = url;
+        this.reloadBrowser();
+        if(kiosk) {
+            this.goFullScreen();
+        }
+    },
+    reloadBrowser: function ()  {
+        if(this.browser) {
+            this.browser.close();
+        }
+        $('body').hide();//hiding admin page to user.
+        this.browser = window.inAppBrowserXwalk.open(this.url, {toolbarHeight: '0'});
+    },
+
+    //jxcore callbacks
+    jxc_loadUrl: function (url) {
+        this.loadUrl(url, true);
+    },
+    jxc_reload: function () {
+        this.reloadBrowser();
+    },
+    jxc_exitFS: function () {
+        this.exitFullscreen();
+    },
+    jxc_goFS: function () {
+        this.goFullScreen();
+    }
 };
 
-app.initialize();
+
+app.initDevice();
