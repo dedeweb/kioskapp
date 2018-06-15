@@ -81,7 +81,7 @@ var app = {
 
     //U.I management callback& funcs
     apiGoLoading: function () {
-        $('#apiStatus').show();
+        $('#apiStatus').removeClass('hidden');
         $('#apiFail').hide();
         $('#apiOk').hide();
         $('#refreshButton i').addClass('animate-spin');
@@ -93,28 +93,28 @@ var app = {
         $('#apiUrl').text(url);
     },
     dispAPIErr: function (err, debugErr) {
-        $('#apiStatus').show();
+        $('#apiStatus').removeClass('hidden');
         $('#apiFail').show();
         $('#apiFail .err-msg').text(err);
         if(debugErr) {
-            $('#errDetails').show();
+            $('#errDetails').removeClass('hidden');
             $('#details').text(debugErr);
         }
     },
     dispAPIOK: function (msg) {
-        $('#apiStatus').show();
+        $('#apiStatus').removeClass('hidden');
         $('#apiOk').show();
         $('#apiOk .msg').text(msg);
         $('#loadUrlBtn').removeAttr('disabled');
-        $('#errDetails').hide();
+        $('#errDetails').addClass('hidden');
         $('#details').hide();
         $('#details').text('');
     },
     hideRefreshApi: function() {
-        $('#apiStatus').hide();
+        $('#apiStatus').addClass('hidden');
         $('#apiFail').hide();
         $('#apiOk').hide();
-        $('#errDetails').hide();
+        $('#errDetails').addClass('hidden');
         $('#details').hide();
     },
 
@@ -180,6 +180,7 @@ var app = {
                 console.error('exit fullscreen error ' + res.output);
             }
         });
+        this.closeBrowser();
     },
     loadUrl: function(url, kiosk) {
         console.log('load url : ' + url);
@@ -188,6 +189,12 @@ var app = {
         if(kiosk) {
             this.goFullScreen();
         }
+    },
+    closeBrowser: function () {
+      if(this.browser) {
+          this.browser.close();
+      }
+      $('body').show();
     },
     reloadBrowser: function ()  {
         if(this.browser) {
